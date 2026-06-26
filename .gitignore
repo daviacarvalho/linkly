@@ -1,0 +1,5 @@
+project.md
+node_modules/
+.env
+*.db
+coverage/
