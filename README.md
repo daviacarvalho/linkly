@@ -10,7 +10,7 @@ Este projeto faz parte do meu estudo de backend, com foco em construção de API
 
 - Construir uma API REST do zero.
 - Aprender Fastify na prática.
-- Trabalhar com SQLite usando `better-sqlite3`.
+- Trabalhar com SQLite via **Prisma ORM**.
 - Aplicar validação utilizando JSON Schema.
 - Implementar tratamento global de erros.
 - Escrever testes com `node:test`.
@@ -21,9 +21,10 @@ Este projeto faz parte do meu estudo de backend, com foco em construção de API
 ## 🛠️ Tecnologias
 
 - Node.js 22+
-- Fastify
-- SQLite
-- better-sqlite3
+- TypeScript (strict, ESM)
+- Fastify 5
+- SQLite (gerenciado pelo Prisma)
+- Prisma 7 (ORM e migrations)
 - Nano ID
 - JSON Schema
 - node:test
@@ -35,15 +36,18 @@ Este projeto faz parte do meu estudo de backend, com foco em construção de API
 ```
 linkly-api/
 ├── src/
-│   ├── database/
-│   ├── plugins/
-│   ├── routes/
-│   ├── schemas/
-│   └── server.js
+│   ├── server.ts        # bootstrap Fastify
+│   ├── routes/          # registro de rotas (sem lógica)
+│   ├── controllers/     # handlers HTTP (request/response)
+│   ├── services/        # regras de negócio (orquestra Prisma)
+│   ├── lib/             # cliente Prisma, error classes, error-handler
+│   └── schemas/         # JSON Schemas
+├── prisma/
+│   ├── schema.prisma    # model Url
+│   └── migrations/      # migrações versionadas
 ├── test/
 ├── routes.http
 ├── README.md
-├── notes.md
 ├── project.md
 └── package.json
 ```
@@ -80,10 +84,12 @@ Durante o desenvolvimento serão registrados estudos sobre:
 
 ## 📅 Roadmap
 
-- [ ] Configuração inicial
-- [ ] Servidor Fastify
-- [ ] Banco SQLite
-- [ ] Repository Pattern
+- [x] Configuração inicial
+- [x] Servidor Fastify
+- [x] Configurar TypeScript (strict + ESM)
+- [x] Adicionar Prisma 7 e SQLite
+- [x] Migration inicial do banco
+- [ ] Repository / Service layer (`src/services/`)
 - [ ] Endpoint `POST /urls`
 - [ ] Endpoint `GET /:code`
 - [ ] Endpoint `GET /urls/:code/stats`
