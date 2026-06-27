@@ -1,12 +1,15 @@
 import { fastify } from "fastify";
+import { urlRoutes } from "./routes/url.routes";
 
-const server = fastify();
+const app = fastify();
 
-server.get("/", (request, reply) => {
-  return reply.send("Hello World");
+app.get("/", async () => {
+  return { message: "Linkly API" };
 });
 
-server.listen({
+await app.register(urlRoutes);
+
+app.listen({
   port: 3333,
 });
 

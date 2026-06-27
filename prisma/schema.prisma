@@ -13,6 +13,5 @@ model Url {
   clicks      Int      @default(0)
   createdAt   DateTime @default(now())
 
-  @@index([shortCode])
   @@map("urls")
 }
